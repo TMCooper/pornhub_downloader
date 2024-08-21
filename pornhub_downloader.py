@@ -53,13 +53,8 @@ def main ():
                 pattern = re.compile(f'/view_video\.php\?viewkey=[\w]+&pkey={ID_LP}')
                 links = set([a['href'] for a in soup.find_all('a', href=True) if pattern.match(a['href'])])        
                 
-                compteur = 1
                 for i in links:
-                    print(compteur)
                     video = client.get(f'https://fr.pornhub.com{i}')
-                    print(f'i = {i}')
-                    print(f'Vidéo = {video}')
-                    compteur = compteur + 1
                     titre = PATH_PLAY+"\\"+video.title+EXTENTION
                     video.download(titre, QUALITE)
 
@@ -78,13 +73,8 @@ def main ():
                     pattern = re.compile(f'/view_video\.php\?viewkey=[\w]+&pkey={ID_LP}')
                     links = set([a['href'] for a in soup.find_all('a', href=True) if pattern.match(a['href'])])
 
-                    compteur = 0
                     for i in links:
-                        print(compteur)
                         video = client.get(f'https://fr.pornhub.com{i}')
-                        print(f'i = {i}')
-                        print(f'Vidéo = {video}')
-                        compteur = compteur + 1
                         titre = PATH_PLAY+"\\"+video.title+EXTENTION
                         video.download(titre, QUALITE)
                 except IndexError:
